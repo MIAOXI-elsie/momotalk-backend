@@ -1,0 +1,22 @@
+{
+  "name": "momotalk-server",
+  "version": "1.0.0",
+  "description": "MomoTalk 独立后端（Node.js + Express + MySQL）—— 由 uniCloud 云函数版完整改造而来，部署于阿里云 ECS",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "init-db": "node scripts/init-db.js",
+    "init-admin": "node scripts/admin-init.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.11.0"
+  }
+}
