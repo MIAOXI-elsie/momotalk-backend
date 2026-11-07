@@ -19,7 +19,8 @@ sql/init.sql        建表脚本（12 张表，对应原 uniCloud schema）
 | Key | 说明 |
 |---|---|
 | PORT | 监听端口（Render 会自动注入，代码读 `process.env.PORT`） |
-| DB_HOST / DB_PORT / DB_USER / DB_PASSWORD / DB_NAME | MySQL 连接 |
+| DB_HOST / DB_PORT / DB_USER / DB_PASSWORD / DB_NAME | MySQL 连接（TiDB Cloud 端口是 **4000**） |
+| DB_SSL | 是否强制 TLS。云数据库填 `true`，本机填 `false` |
 | SECRET | 令牌签名密钥，必须改成 32 位以上随机字符串 |
 | PUBLIC_BASE_URL | 对外访问地址，用于拼接上传文件完整 URL |
 | UPLOAD_DIR / MAX_UPLOAD_MB | 上传目录与单文件大小上限（默认 ./uploads / 50MB） |

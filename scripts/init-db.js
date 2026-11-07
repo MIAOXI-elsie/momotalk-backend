@@ -19,13 +19,17 @@ async function main() {
 	const sql = fs.readFileSync(sqlFile, 'utf8')
 	console.log('正在连接 MySQL:', process.env.DB_HOST || '127.0.0.1', ':', process.env.DB_PORT || '3306')
 	// 注意：不指定 database（脚本自己 CREATE DATABASE + USE），开启多语句执行
-	const conn = await mysql.createConnection({
+	const connOptions = {
 		host: process.env.DB_HOST || '127.0.0.1',
 		port: Number(process.env.DB_PORT || 3306),
 		user: process.env.DB_USER || 'root',
 		password: process.env.DB_PASSWORD || '',
 		multipleStatements: true
-	})
+	}
+	if (['1', 'true', 'yes'].includes(String(process.env.DB_SSL || '').toLowerCase())) {
+		connOptions.ssl = { minVersion: 'TLSv1.2', rejectUnauthorized: true }
+	}
+	const conn = await mysql.createConnection(connOptions)
 	await conn.query(sql)
 	// 校验建表结果
 	const [tables] = await conn.query('SHOW TABLES FROM momotalk')
